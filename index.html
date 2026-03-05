@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>S.A.F.E · slide deck | sterile adaptive free engagement</title>
+    <!-- Inter font + simple icons (feather) -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #0f4c5c;
+            --primary-deep: #08323b;
+            --secondary: #2c7a7b;
+            --accent-soft: #e0f0f0;
+            --background: #f5fbfb;
+            --white: #ffffff;
+            --text-dark: #1e2a2a;
+            --text-medium: #385252;
+            --text-light: #5f7474;
+            --border-light: #cde3e3;
+            --badge-bg: #d9ecec;
+            --shadow-card: 0 12px 28px -8px rgba(13, 60, 70, 0.08);
+            --transition: 0.2s ease;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--background);
+            color: var(--text-dark);
+            line-height: 1.5;
+            padding: 2rem 1rem;
+        }
+
+        /* slide deck container */
+        .deck {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 2.5rem;
+        }
+
+        /* each slide card */
+        .slide {
+            background: var(--white);
+            border-radius: 2.5rem;
+            padding: 2.8rem 2.8rem 3rem 2.8rem;
+            box-shadow: var(--shadow-card);
+            border: 1px solid var(--border-light);
+            transition: var(--transition);
+            scroll-margin-top: 2rem;
+        }
+
+        .slide:hover {
+            box-shadow: 0 20px 36px -12px rgba(15, 76, 92, 0.12);
+        }
+
+        /* badge style (clinical / S.A.F.E etc) */
+        .badge {
+            display: inline-block;
+            background: var(--badge-bg);
+            color: var(--primary-deep);
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.3px;
+            padding: 0.4rem 1.2rem;
+            border-radius: 40px;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+            border: 1px solid var(--border-light);
+        }
+
+        h2 {
+            font-size: 2.2rem;
+            font-weight: 500;
+            color: var(--primary);
+            margin-bottom: 1.8rem;
+            line-height: 1.2;
+        }
+
+        h2 span {
+            color: var(--secondary);
+            font-weight: 400;
+        }
+
+        h3 {
+            font-size: 1.4rem;
+            font-weight: 500;
+            color: var(--primary-deep);
+            margin-bottom: 1rem;
+        }
+
+        /* context / text blocks */
+        .context {
+            color: var(--text-medium);
+            font-size: 1.05rem;
+            margin-bottom: 2rem;
+            max-width: 720px;
+        }
+
+        /* feature grid (pain points / benefits / modules) */
+        .grid-2, .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1.8rem;
+            margin: 2rem 0 0.5rem 0;
+        }
+
+        .card-item {
+            background: var(--background);
+            border-radius: 1.8rem;
+            padding: 1.8rem 1.5rem;
+            border: 1px solid var(--border-light);
+            transition: var(--transition);
+        }
+
+        .card-item:hover {
+            background: var(--white);
+            border-color: var(--secondary);
+        }
+
+        .card-icon {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .card-icon i {
+            width: 1.5rem;
+            height: 1.5rem;
+        }
+
+        .card-item h4 {
+            font-size: 1.2rem;
+            font-weight: 500;
+            color: var(--primary-deep);
+            margin-bottom: 0.5rem;
+        }
+
+        .card-item p, .feature-desc {
+            font-size: 0.95rem;
+            color: var(--text-medium);
+        }
+
+        .feature-desc {
+            margin-top: 0.4rem;
+            list-style: none;
+        }
+
+        .feature-desc li {
+            display: flex;
+            gap: 0.5rem;
+            align-items: flex-start;
+            margin-bottom: 0.4rem;
+            font-size: 0.9rem;
+        }
+
+        .feature-desc li i {
+            width: 1rem;
+            height: 1rem;
+            margin-top: 0.2rem;
+            color: var(--secondary);
+        }
+
+        /* special two-pillar row (slide2) */
+        .pillar-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin: 2rem 0 1rem;
+        }
+
+        .pillar {
+            flex: 1 1 280px;
+            background: var(--background);
+            border-radius: 2rem;
+            padding: 2rem;
+            border: 1px solid var(--border-light);
+        }
+
+        .pillar h4 {
+            font-size: 1.3rem;
+            font-weight: 500;
+            color: var(--primary);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .pillar-features {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem 1.8rem;
+            margin-top: 1.2rem;
+        }
+
+        .pillar-features span {
+            background: var(--white);
+            padding: 0.3rem 1rem 0.3rem 0.8rem;
+            border-radius: 40px;
+            font-size: 0.85rem;
+            border: 1px solid var(--border-light);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+            color: var(--text-medium);
+        }
+
+        /* visual overview slide (simple placeholder) */
+        .visual-placeholder {
+            background: linear-gradient(145deg, #d2ecec, #b9dddd);
+            border-radius: 2rem;
+            padding: 3rem 2rem;
+            text-align: center;
+            border: 1px solid var(--border-light);
+            margin: 1.8rem 0 0.5rem;
+            font-size: 1.2rem;
+            color: var(--primary-deep);
+            font-weight: 400;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .visual-placeholder i {
+            width: 2rem;
+            height: 2rem;
+        }
+
+        /* future grid (slide5) */
+        .future-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.8rem;
+            margin: 2rem 0;
+        }
+
+        .future-card {
+            background: var(--background);
+            border-radius: 1.8rem;
+            padding: 1.8rem;
+            border: 1px solid var(--border-light);
+        }
+
+        .twin-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.8rem;
+            margin-top: 2rem;
+        }
+
+        .impact-item {
+            background: var(--background);
+            border-radius: 1.5rem;
+            padding: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        hr {
+            margin: 2rem 0 1rem;
+            border: 0;
+            border-top: 1px solid var(--border-light);
+        }
+
+        .small-note {
+            color: var(--text-light);
+            font-size: 0.9rem;
+            margin-top: 1.5rem;
+        }
+
+        /* slide index dot (optional) */
+        .slide-meta {
+            display: flex;
+            justify-content: flex-end;
+            font-size: 0.8rem;
+            color: var(--text-light);
+            margin-top: 1rem;
+        }
+
+        /* responsive */
+        @media (max-width: 600px) {
+            .slide { padding: 2rem 1.5rem; }
+            h2 { font-size: 1.8rem; }
+            .twin-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="deck">
+
+        <!-- SLIDE 1: The Problem -->
+        <section class="slide" id="slide1">
+            <div class="badge">CLINICAL PROBLEM</div>
+            <h2>Sterility demands <span>contact‑free control</span></h2>
+            <div class="context">
+                In sterile environments (operating theatres), traditional interfaces like touchscreens and mice are major contamination risks.
+            </div>
+
+            <div class="grid-3">
+                <!-- pain point 1 -->
+                <div class="card-item">
+                    <div class="card-icon"><i data-feather="users"></i><i data-feather="alert-circle"></i></div>
+                    <h4>Inaccessible for many</h4>
+                    <p>Motor impairments or bulky PPE make standard input impossible.</p>
+                </div>
+                <!-- pain point 2 -->
+                <div class="card-item">
+                    <div class="card-icon"><i data-feather="mic"></i><i data-feather="activity"></i></div>
+                    <h4>Voice & pedals fall short</h4>
+                    <p>Unreliable in noisy settings, lack precision, and introduce latency.</p>
+                </div>
+                <!-- pain point 3 -->
+                <div class="card-item">
+                    <div class="card-icon"><i data-feather="shield-off"></i></div>
+                    <h4>Breaking sterility = risk</h4>
+                    <p>Leads to contamination, workflow delays, and assistant dependency.</p>
+                </div>
+            </div>
+            <div class="small-note" style="margin-top:1rem;">→ A reliable, intuitive, hands‑free control system is critically needed.</div>
+            <div class="slide-meta">1/5 · problem</div>
+        </section>
+
+        <!-- SLIDE 2: The Solution (S.A.F.E.) -->
+        <section class="slide" id="slide2">
+            <div class="badge">S.A.F.E. STERILE ADAPTIVE FREE ENGAGEMENT</div>
+            <h2>Two‑pillar <span>AI control</span></h2>
+            <div class="context" style="font-weight:400;"></div>
+
+            <div class="pillar-row">
+                <!-- pillar 1: hands_module -->
+                <div class="pillar">
+                    <h4><i data-feather="hand"></i> hands_module</h4>
+                    <ul class="feature-desc" style="list-style:none; padding-left:0;">
+                        <li><i data-feather="chevron-right"></i> left‑hand 2D scroll</li>
+                        <li><i data-feather="chevron-right"></i> right‑hand pinch‑to‑zoom</li>
+                        <li><i data-feather="chevron-right"></i> visual overlay & adaptive smoothing</li>
+                    </ul>
+                </div>
+                <!-- pillar 2: head_module (icon fixed) -->
+                <div class="pillar">
+                    <h4><i data-feather="eye"></i> head_module</h4>
+                    <ul class="feature-desc" style="list-style:none; padding-left:0;">
+                        <li><i data-feather="chevron-right"></i> nose‑lean for zoom</li>
+                        <li><i data-feather="chevron-right"></i> head‑turn for scroll</li>
+                        <li><i data-feather="chevron-right"></i> real‑time calibration · 6‑axis smoothing</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="pillar-features" style="margin-top:1rem;">
+                <span><i data-feather="check-circle" style="width:14px;"></i> gesture confirmation</span>
+                <span><i data-feather="check-circle" style="width:14px;"></i> no accidental input</span>
+                <span><i data-feather="check-circle" style="width:14px;"></i> sterile direct interaction</span>
+            </div>
+            <div class="slide-meta">2/5 · solution</div>
+        </section>
+
+        <!-- SLIDE 3: Features & Benefits -->
+        <section class="slide" id="slide3">
+            <div class="badge">FEATURES & BENEFITS</div>
+            <h2>Designed for the <span>sterile field</span></h2>
+
+            <div class="grid-2" style="grid-template-columns:repeat(auto-fit,minmax(230px,1fr));">
+                <div class="card-item">
+                    <i data-feather="droplet" style="width:2rem; height:2rem; color:var(--primary); margin-bottom:0.5rem;"></i>
+                    <h4>Fully sterile, contact‑free</h4>
+                    <p>No contamination vector — zero touch, zero voice.</p>
+                </div>
+                <div class="card-item">
+                    <i data-feather="shield" style="width:2rem; height:2rem; color:var(--primary); margin-bottom:0.5rem;"></i>
+                    <h4>Intelligent safety filtering</h4>
+                    <p>Deadzones, smoothing, and confirmation logic.</p>
+                </div>
+                <div class="card-item">
+                    <i data-feather="user-check" style="width:2rem; height:2rem; color:var(--primary); margin-bottom:0.5rem;"></i>
+                    <h4>Direct surgeon interaction</h4>
+                    <p>No assistant dependency for controlling imaging.</p>
+                </div>
+                <div class="card-item">
+                    <i data-feather="clock" style="width:2rem; height:2rem; color:var(--primary); margin-bottom:0.5rem;"></i>
+                    <h4>Real‑time feedback</h4>
+                    <p>Visual overlay + latency ≤20ms.</p>
+                </div>
+            </div>
+            <div class="slide-meta">3/5 · benefits</div>
+        </section>
+
+        <!-- SLIDE 4: Visual Overview (fixed unclosed span) -->
+<!-- SLIDE 4: Visual Overview with actual image -->
+<section class="slide" id="slide4">
+    <div class="badge">VISUAL OVERVIEW</div>
+    <h2>System in <span>sterile environment</span></h2>
+    
+    <!-- Image display instead of placeholder text -->
+    <div class="visual-placeholder" style="flex-direction: column; padding: 2rem;">
+        <div style="display: flex; gap: 1rem; margin-bottom: 1rem;">
+            <i data-feather="camera"></i>
+            <i data-feather="arrow-right"></i>
+            <i data-feather="monitor"></i>
+        </div>
+        
+        <!-- ACTUAL IMAGE TAG -->
+        <img src="flowchart.png" alt="S.A.F.E Hand and Head Tracking Flowchart" 
+             style="max-width: 100%; border-radius: 1.5rem; border: 3px solid white; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
+        
+        <p style="margin-top: 1rem; font-size: 0.9rem; color: var(--primary-deep);">
+        </p>
+    </div>
+
+    <div class="context" style="margin-top:2rem;">
+        Camera feed shows hand/head landmarks, on‑screen status, confidence indicators. <br>Uses only two modules: hands_module + head_module.
+    </div>
+    <div class="slide-meta">4/5 · visual</div>
+</section>
+
+        <!-- SLIDE 5: Future & Social Impact -->
+        <section class="slide" id="slide5">
+            <div class="badge">FUTURE & SOCIAL IMPACT</div>
+            <h2>Beyond the <span>prototype</span></h2>
+
+            <div class="future-grid">
+                <div class="future-card">
+                    <i data-feather="monitor" style="width:2rem; height:2rem; color:var(--primary); margin-bottom:0.8rem;"></i>
+                    <h4>Hospital integration</h4>
+                    <p>Working with PACS/OR systems and DICOM viewers.</p>
+                </div>
+                <div class="future-card">
+                    <i data-feather="tool" style="width:2rem; height:2rem; color:var(--primary); margin-bottom:0.8rem;"></i>
+                    <h4>Equipment partners</h4>
+                    <p>Co‑development with surgical device manufacturers.</p>
+                </div>
+                <div class="future-card">
+                    <i data-feather="code" style="width:2rem; height:2rem; color:var(--primary); margin-bottom:0.8rem;"></i>
+                    <h4>Cost‑efficient deployment</h4>
+                    <p>Software‑only solution for existing hardware.</p>
+                </div>
+            </div>
+
+            <!-- social impact twin grid -->
+            <hr>
+            <h3 style="margin-bottom:0.5rem;">Social impact</h3>
+            <div class="twin-grid">
+                <div class="impact-item">
+                    <i data-feather="heart" style="width:2rem; height:2rem; color:var(--secondary);"></i>
+                    <span>Improved public health & patient safety</span>
+                </div>
+                <div class="impact-item">
+                    <i data-feather="zap" style="width:2rem; height:2rem; color:var(--secondary);"></i>
+                    <span>Technology‑driven healthcare modernization</span>
+                </div>
+            </div>
+            <div class="slide-meta">5/5 · future</div>
+        </section>
+    </div>
+
+    <!-- feather icon replacement -->
+    <script>
+        feather.replace({ width: '1.2em', height: '1.2em' });
+    </script>
+
+    <!-- tiny navigation hint -->
+    <div style="max-width:1200px; margin: 2rem auto 1rem; text-align: center; font-size:0.85rem; color: var(--text-light);">
+        S.A.F.E presentation · 5 slides · clinical interface concept
+    </div>
+</body>
+</html>
