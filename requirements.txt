@@ -1,0 +1,14 @@
+# Core Dependencies
+
+opencv-python==4.9.0.80
+mediapipe==0.10.14
+numpy==1.26.4
+Pillow==10.3.0
+
+# GUI (comes pre-installed with Python, but listed for clarity)
+
+tk
+
+# Optional (recommended for performance & compatibility)
+
+protobuf==4.25.3
